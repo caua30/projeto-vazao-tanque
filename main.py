@@ -9,7 +9,6 @@ class Tanque:
         self.capacidade_atual += quantidade_recebida
 
     def taxa_vazamento(self,pressão_final , pressão_inicial, volume, tempo):
-        taxa_de_vazamento = (pressão_final - pressão_inicial)*volume/tempo
-        self_capacidade_atual - self.taxa_vazamento == self.capacidade_atual
-
+        self.vazamento = (pressão_final - pressão_inicial)*volume/tempo
+        self.capacidade_atual = self.capacidade_atual - self.vazamento
 
