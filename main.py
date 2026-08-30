@@ -15,15 +15,23 @@ class Tanque:
         self.capacidade_atual += quantidade_recebida
 
     def taxa_vazamento(self):
-        # lembrar de atualizar variaveis de area para ser atualizada a cada iteração
-        self.vazamento = (self.coeficiente_de_descarga*self.area_valvula)*((2*9.81*self.altura_agua)**0.5)
-        self.altura_agua = self.altura_agua - self.vazamento
-        self.capacidade_atual = self.capacidade_atual - self.vazamento
+        if self.altura_agua >= 0:
+            self.vazamento = (self.coeficiente_de_descarga*self.area_valvula)*((2*9.81*self.altura_agua)**0.5)
+            self.queda_agua = self.vazamento / self.area_tanque
+            self.altura_agua = self.altura_agua - self.queda_agua
+            self.capacidade_atual = self.capacidade_atual - self.vazamento
+        else:
+            self.capacidade_atual = 0 
+            self.altura_agua = 0
+         
 
 
 
-meu_tanque = Tanque(1000)
+meu_tanque = Tanque(2)
 print("1,2,3,4")
-while(meu_tanque.capacidade_atual != 0):
+while(meu_tanque.capacidade_atual >= 0.1):
     meu_tanque.taxa_vazamento()
-    print(meu_tanque.capacidade_atual)
+    print(round(meu_tanque.altura_agua, 4))
+    if meu_tanque.capacidade_atual < 0.1:
+        print("o tanque foi esvaziado")
+        break
