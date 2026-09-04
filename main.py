@@ -25,13 +25,30 @@ class Tanque:
             self.altura_agua = 0
          
 
+#lembrar de criar forma de pausar vazão e voltar e receber agua dentro do while 
+# teste
+meu_tanque = Tanque(0)
+escolha = "0"
+
+while escolha != "4":
+    escolha = input("1 para vazar água até o nível escolhido\n2 para adicionar mais água ao tanque\n3 para ver quanta agua tem\nEscolha: ")
+    if escolha == "1":
+        quantidade_vazao = float(input("Digite até que nível deseja que a água fique: "))
+        while meu_tanque.altura_agua > quantidade_vazao:
+            meu_tanque.taxa_vazamento()
+            print(round(meu_tanque.altura_agua, 4))
+        print("O tanque foi esvaziado até o nível escolhido")
+    elif escolha == "2":
+        quantidade_adicionada = float(input("Digite a quantidade de água a ser adicionada: "))
+        meu_tanque.receber_agua(quantidade_adicionada)
+    elif escolha == "3":
+        print(meu_tanque.capacidade_atual)
+    else:
+        print("Opção inválida") 
+        continue
 
 
-meu_tanque = Tanque(2)
-print("1,2,3,4")
-while(meu_tanque.capacidade_atual >= 0.1):
-    meu_tanque.taxa_vazamento()
-    print(round(meu_tanque.altura_agua, 4))
-    if meu_tanque.capacidade_atual < 0.1:
-        print("o tanque foi esvaziado")
-        break
+
+
+
+
